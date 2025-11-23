@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0f1724;
+  --surface: #0b1220;
+  --muted: #94a3b8;
+  --text: #e6eef8;
+  --accent: #00e6d3;
+  --accent-2: #3bf0ff;
+  --glass: rgba(255, 255, 255, 0.04);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
