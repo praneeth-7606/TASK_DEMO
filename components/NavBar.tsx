@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import RequestDemoModal from "./RequestDemoModal";
 import { motion, AnimatePresence } from "framer-motion";
+import Magnetic from "./ui/Magnetic";
 
 export default function NavBar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -53,14 +54,15 @@ export default function NavBar() {
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-sm font-medium tracking-widest text-muted hover:text-accent transition-colors relative group py-2"
-                            >
-                                {link.name}
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-                            </Link>
+                            <Magnetic key={link.name} strength={15}>
+                                <Link
+                                    href={link.href}
+                                    className="text-sm font-medium tracking-widest text-muted hover:text-accent transition-colors relative group py-2 px-2 block"
+                                >
+                                    {link.name}
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                                </Link>
+                            </Magnetic>
                         ))}
                     </nav>
 
@@ -101,12 +103,14 @@ export default function NavBar() {
                             </button>
                         </div>
 
-                        <button
-                            onClick={() => setIsDemoModalOpen(true)}
-                            className="px-5 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-medium transition-all hover:border-accent/50 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
-                        >
-                            Get a demo
-                        </button>
+                        <Magnetic>
+                            <button
+                                onClick={() => setIsDemoModalOpen(true)}
+                                className="px-5 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-medium transition-all hover:border-accent/50 hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+                            >
+                                Get a demo
+                            </button>
+                        </Magnetic>
                     </div>
 
                     {/* Mobile Menu Toggle */}
