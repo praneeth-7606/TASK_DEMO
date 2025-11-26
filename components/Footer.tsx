@@ -1,47 +1,63 @@
-import Link from "next/link";
-import { Github, Twitter, Linkedin, Facebook, Instagram } from "lucide-react";
+// FILE: components/Footer.tsx
+'use client'
+
+import { Github, Twitter, Linkedin } from 'lucide-react'
 
 export default function Footer() {
+    const currentYear = new Date().getFullYear()
+
     return (
-        <footer className="py-20 bg-[#050a10] border-t border-white/5">
-            <div className="container mx-auto px-6 text-center">
-                <h4 className="text-2xl md:text-3xl font-bold text-white mb-10">
-                    All you have to do is… <span className="text-accent">contact us!</span>
-                </h4>
-
-                <ul className="flex justify-center gap-8 mb-16">
-                    {[
-                        { icon: Twitter, href: "#" },
-                        { icon: Facebook, href: "#" },
-                        { icon: Instagram, href: "#" },
-                        { icon: Github, href: "#" },
-                        { icon: Linkedin, href: "#" },
-                    ].map((item, i) => (
-                        <li key={i}>
-                            <a
-                                href={item.href}
-                                className="text-muted hover:text-white transition-all hover:-translate-y-1 inline-block"
-                            >
-                                <item.icon size={24} />
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/5 text-sm text-muted">
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded bg-gradient-to-br from-accent to-accent-2 flex items-center justify-center text-bg font-bold text-xs">
-                            O
-                        </div>
-                        <span>© {new Date().getFullYear()} Oodl — Memory for Agents</span>
+        <footer className="bg-surface border-t border-white/10 pt-16 pb-8">
+            <div className="container mx-auto px-4 max-w-7xl">
+                <div className="grid md:grid-cols-4 gap-12 mb-12">
+                    <div className="col-span-1 md:col-span-2">
+                        <a href="/" className="text-2xl font-bold text-white tracking-tight block mb-4">
+                            Oodl
+                        </a>
+                        <p className="text-muted max-w-xs">
+                            The Memory Infrastructure for Agents.
+                            Ingest everything. Organize everything. Recall anything.
+                        </p>
                     </div>
 
+                    <div>
+                        <h4 className="font-bold text-white mb-4">Product</h4>
+                        <ul className="space-y-3 text-muted">
+                            <li><a href="#" className="hover:text-accent transition-colors">Features</a></li>
+                            <li><a href="#" className="hover:text-accent transition-colors">Integration</a></li>
+                            <li><a href="#" className="hover:text-accent transition-colors">Pricing</a></li>
+                            <li><a href="#" className="hover:text-accent transition-colors">Changelog</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-white mb-4">Resources</h4>
+                        <ul className="space-y-3 text-muted">
+                            <li><a href="#" className="hover:text-accent transition-colors">Documentation</a></li>
+                            <li><a href="#" className="hover:text-accent transition-colors">API Reference</a></li>
+                            <li><a href="#" className="hover:text-accent transition-colors">Community</a></li>
+                            <li><a href="#" className="hover:text-accent transition-colors">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-muted text-sm">
+                        © {currentYear} Oodl Inc. All rights reserved.
+                    </p>
                     <div className="flex gap-6">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <a href="#" className="text-muted hover:text-white transition-colors">
+                            <Github size={20} />
+                        </a>
+                        <a href="#" className="text-muted hover:text-white transition-colors">
+                            <Twitter size={20} />
+                        </a>
+                        <a href="#" className="text-muted hover:text-white transition-colors">
+                            <Linkedin size={20} />
+                        </a>
                     </div>
                 </div>
             </div>
         </footer>
-    );
+    )
 }

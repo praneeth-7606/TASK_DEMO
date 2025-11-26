@@ -1,157 +1,76 @@
-"use client";
+// FILE: components/ImageTextBlock.tsx
+'use client'
 
-import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDown } from "lucide-react";
-import clsx from "clsx";
-import { motion } from "framer-motion";
-
-const accordionItems = [
-    {
-        title: "Semantic Continuity",
-        content: "Preserve long multi-step conversations so agents don't lose the plot halfway through complex tasks.",
-    },
-    {
-        title: "Cross-Thread Recall",
-        content: "Connect ideas across chats, apps, and tasks. Oodl builds a graph of understanding that spans your entire digital footprint.",
-    },
-    {
-        title: "Temporal Awareness",
-        content: "Time matters. Oodl understands recency, deadlines, and follow-ups, prioritizing what's relevant now.",
-    },
-    {
-        title: "Meta-Intent Detection",
-        content: "Go beyond keywords. Extract reminders, dissatisfaction, and implicit goals from every interaction.",
-    },
-    {
-        title: "Hybrid Retrieval",
-        content: "The best of both worlds. Mix conversations, docs, files, app events, and videos for complete context.",
-    },
-    {
-        title: "Dynamic Association",
-        content: "Discover related memories at runtime. Oodl proactively surfaces relevant information before you even ask.",
-    },
-];
+import { motion } from 'framer-motion'
+import { MessageSquare, Github, FileText, Mail, Globe, Folder } from 'lucide-react'
+import NetworkAnimation3D from './NetworkAnimation3D'
 
 export default function ImageTextBlock() {
     return (
-        <section id="how-it-works" className="py-32 bg-bg relative overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[800px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
-
-            <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-                {/* Left: Text & Accordion */}
-                <motion.div
-                    initial={{ opacity: 0, x: -40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-10 leading-tight">
-                        Built for real <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-2">conversational memory</span>
-                    </h2>
-
-                    <div className="space-y-4">
-                        {accordionItems.map((item, i) => (
-                            <Disclosure key={i} as="div" className="border-b border-white/10 pb-4">
-                                {({ open }) => (
-                                    <>
-                                        <Disclosure.Button className="flex w-full justify-between items-center py-3 text-left text-lg font-medium text-white hover:text-accent transition-colors focus:outline-none group">
-                                            <span className={clsx("transition-colors", open ? "text-accent" : "")}>{item.title}</span>
-                                            <ChevronDown
-                                                className={clsx(
-                                                    "w-5 h-5 text-muted transition-transform duration-300 group-hover:text-accent",
-                                                    open ? "rotate-180 text-accent" : ""
-                                                )}
-                                            />
-                                        </Disclosure.Button>
-                                        <Transition
-                                            enter="transition duration-200 ease-out"
-                                            enterFrom="transform scale-95 opacity-0 h-0"
-                                            enterTo="transform scale-100 opacity-100 h-auto"
-                                            leave="transition duration-100 ease-out"
-                                            leaveFrom="transform scale-100 opacity-100 h-auto"
-                                            leaveTo="transform scale-95 opacity-0 h-0"
-                                        >
-                                            <Disclosure.Panel className="pt-2 pb-4 text-muted leading-relaxed text-base">
-                                                {item.content}
-                                            </Disclosure.Panel>
-                                        </Transition>
-                                    </>
-                                )}
-                            </Disclosure>
-                        ))}
-                    </div>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+        <section className="py-24 px-4 overflow-hidden">
+            <div className="container mx-auto max-w-7xl">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    {/* Text Content */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-10 text-xl font-medium text-accent"
+                        transition={{ duration: 0.8 }}
+                        className="order-2 lg:order-1"
                     >
-                        Vector search wasn't built for this. Your agents need it.
-                    </motion.p>
-                </motion.div>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                            Ingest <span className="text-accent">Everything</span>
+                        </h2>
+                        <p className="text-muted text-lg mb-8 leading-relaxed">
+                            Anything that happens in your apps gets CC'd into Oodl — automatically.
+                            From Slack and GitHub to Notion, email, browser activity, files, and custom apps.
+                        </p>
 
-                {/* Right: Visual Representation (Abstract Memory Graph) */}
-                <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative aspect-square rounded-3xl bg-surface border border-white/5 overflow-hidden flex items-center justify-center shadow-2xl"
-                >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/10 to-transparent" />
+                        <div className="grid grid-cols-3 gap-4">
+                            {[
+                                { icon: MessageSquare, label: 'Slack', color: 'text-purple-400' },
+                                { icon: Github, label: 'GitHub', color: 'text-white' },
+                                { icon: FileText, label: 'Notion', color: 'text-gray-300' },
+                                { icon: Mail, label: 'Email', color: 'text-blue-400' },
+                                { icon: Globe, label: 'Browser', color: 'text-cyan-400' },
+                                { icon: Folder, label: 'Files', color: 'text-yellow-400' }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    whileHover={{ y: -5 }}
+                                    className="flex flex-col items-center justify-center p-4 bg-surface rounded-xl border border-white/5 hover:border-accent/30 transition-colors shadow-soft group cursor-pointer"
+                                >
+                                    <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-3 group-hover:bg-white/10 transition-colors ${item.color}`}>
+                                        <item.icon size={24} />
+                                    </div>
+                                    <span className="text-sm font-medium text-muted group-hover:text-white transition-colors">{item.label}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
 
-                    {/* Animated Nodes */}
-                    <div className="relative w-full h-full">
-                        {[...Array(8)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="absolute w-3 h-3 rounded-full bg-accent shadow-[0_0_15px_rgba(0,230,211,0.6)]"
-                                style={{
-                                    top: `${20 + Math.random() * 60}%`,
-                                    left: `${20 + Math.random() * 60}%`,
-                                }}
-                                animate={{
-                                    scale: [1, 1.5, 1],
-                                    opacity: [0.3, 1, 0.3],
-                                }}
-                                transition={{
-                                    duration: 3 + Math.random() * 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                }}
-                            />
-                        ))}
+                    {/* Animation/Visual */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="order-1 lg:order-2 relative"
+                    >
+                        <div className="relative aspect-video rounded-card overflow-hidden border border-white/10 shadow-2xl group bg-[#0b1220]">
+                            {/* Replaced 2D animation with 3D NetworkAnimation */}
+                            <div className="absolute inset-0">
+                                <NetworkAnimation3D />
+                            </div>
 
-                        {/* Connecting Lines (SVG) */}
-                        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
-                            <motion.path
-                                d="M100,100 Q250,150 400,100 T600,200"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                                className="text-accent"
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                whileInView={{ pathLength: 1, opacity: 1 }}
-                                transition={{ duration: 2, ease: "easeInOut" }}
-                            />
-                            <motion.path
-                                d="M50,400 Q200,250 350,350 T650,300"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                                className="text-accent-2"
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                whileInView={{ pathLength: 1, opacity: 1 }}
-                                transition={{ duration: 2.5, ease: "easeInOut", delay: 0.5 }}
-                            />
-                        </svg>
-                    </div>
-                </motion.div>
+                            {/* Overlay gradient for depth */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-bg/20 to-transparent pointer-events-none" />
+                        </div>
+                        {/* Decorative blob */}
+                        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent-2/20 rounded-full blur-3xl -z-10" />
+                    </motion.div>
+                </div>
             </div>
         </section>
-    );
+    )
 }

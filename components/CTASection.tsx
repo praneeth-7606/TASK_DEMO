@@ -1,62 +1,42 @@
-"use client";
+// FILE: components/CTASection.tsx
+'use client'
 
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import RequestDemoModal from "./RequestDemoModal";
-import { motion } from "framer-motion";
-import FloatingElement from "./ui/FloatingElement";
-import Magnetic from "./ui/Magnetic";
+import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 
 export default function CTASection() {
-    const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-
     return (
-        <section className="py-32 relative overflow-hidden bg-gradient-to-br from-accent/20 to-bg border-y border-white/5">
-            <FloatingElement depth={0.2} className="absolute top-10 left-10 w-40 h-40 rounded-full bg-white/5 blur-3xl opacity-50" />
-            <FloatingElement depth={0.6} className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-accent/10 blur-3xl opacity-50" />
+        <section className="py-32 px-4 relative overflow-hidden">
+            {/* Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b from-bg via-surface to-accent/5" />
 
-            <div className="container mx-auto px-6 relative z-10 text-center">
+            <div className="container mx-auto max-w-4xl relative z-10 text-center">
                 <motion.h2
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-5xl md:text-6xl font-bold text-white mb-8"
+                    className="text-4xl md:text-5xl font-bold mb-8"
                 >
-                    Ready to get started?
+                    Ready to give your agents <br />
+                    <span className="text-gradient">real memory?</span>
                 </motion.h2>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="text-xl text-muted mb-12 max-w-2xl mx-auto"
-                >
-                    Let’s connect and build something great together. Join the leading AI teams building context-aware applications.
-                </motion.p>
-
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="flex justify-center"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
-                    <Magnetic strength={40}>
-                        <button
-                            onClick={() => setIsDemoModalOpen(true)}
-                            className="px-10 py-5 rounded-xl bg-white text-bg font-bold text-xl transition-all duration-300 hover:shadow-[0_12px_24px_rgba(0,0,0,0.2)] hover:bg-accent-2 focus:outline-none focus:ring-4 focus:ring-white/30"
-                        >
-                            Contact Us
-                        </button>
-                    </Magnetic>
+                    <button className="w-full sm:w-auto px-8 py-4 bg-accent text-bg font-bold rounded-btn hover:bg-accent-2 transition-colors shadow-glow flex items-center justify-center gap-2 group">
+                        Get a demo
+                        <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <button className="w-full sm:w-auto px-8 py-4 border border-white/10 rounded-btn hover:bg-white/5 transition-colors font-medium">
+                        Contact Sales
+                    </button>
                 </motion.div>
             </div>
-
-            <RequestDemoModal
-                isOpen={isDemoModalOpen}
-                onClose={() => setIsDemoModalOpen(false)}
-            />
         </section>
-    );
+    )
 }
